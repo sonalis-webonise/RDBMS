@@ -1,0 +1,50 @@
+CREATE OR REPLACE FUNCTION calculate() RETURNS TRIGGER AS $calc$
+DECLARE 
+q integer;
+p integer;
+BEGIN
+
+	SELECT quantity into q from product_cart where id=new.id;
+	SELECT price into p from product_color where product_color.id=new.product_id;
+	UPDATE orders SET total_cost = total_cost+(p*q) WHERE user_id = new.user_id;
+	IF NOT FOUND THEN 
+		INSERT INTO orders(user_id,total_cost,payment) values(new.user_id,p*q,false);
+	END IF; 
+	RETURN new;
+END;
+$calc$ language plpgsql;
+
+CREATE TRIGGER calc
+	AFTER INSERT OR UPDATE OR DELETE ON product_cart
+	FOR EACH ROW EXECUTE PROCEDURE calculate();
+
+drop trigger calc on product_cart;
+
+select * from orders;
+
+select * from product_cart;
+
+select * from products_view;
+
+drop view products_view CASCADE;
+create view products_view  as
+	select product_color.id,products.name,product_color.price,product_color.color
+	from products inner join product_color
+	on products.id=product_color.product_id;
+
+drop view orders_carts;
+create view orders_carts as
+	select product_cart.id as productcartid, orders.user_id, product_cart.product_id, orders.id
+	from orders
+	inner join product_cart on orders.user_id = product_cart.user_id;
+
+select * from orders_carts;
+
+create view report as
+	select orders.id,orders.purchase_date,products_view.name, products_view.color, products_view.price,users.uname,users.email_id
+	from orders 
+	inner join products_view on products_view.id=orders.user_id
+	inner join users on orders.user_id=users.id
+	inner join orders_carts on orders.user_id=orders_carts.user_id;
+
+select * from report where purchase_date>=current_date-30;
