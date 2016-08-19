@@ -1,0 +1,45 @@
+﻿insert into users values(1,'sonali','sonali.sulgadle@weboniselab.com','webonise123#',9175395590);
+insert into users values(2,'riya','riya.jain@gmail.com','priya123#',9970254896);
+insert into users values(3,'nikita','nikita.t25@gmail.com','admin123#',9874563210);
+insert into users values(4,'ashrita','ashrita.thakur@weboniselab.com','webonise@123',96302587410);
+insert into users values(5,'damon','damon.sal5@yahoo.com','damon@56',9822654854);
+
+alter table users alter column contact type numeric USING contact::numeric;
+alter table users add constraint contact CHECK ( contact LIKE '%[^0-9]%' AND len(contact)=10);
+alter table users drop constraint contact;
+
+delete from users where user_id=2;
+
+select * from users;
+
+insert into products values(101,'samsung','Galaxy Core','white',13000);
+insert into products values(102,'samsung','Note 3','Black',17000);
+insert into products values(103,'Motorola','4G plus','white',15000);
+insert into products values(104,'Motorola','4G plus','black',15000);
+insert into products values(105,'LeEco','Le 2','white',12000);
+
+select * from products;
+
+insert into product_cart values(201,101);
+insert into product_cart values(202,102);
+insert into product_cart values(203,103);
+insert into product_cart values(204,104);
+insert into product_cart values(205,105);
+
+select * from product_cart;
+
+insert into orders values(301,1,5,1,201);
+insert into orders values(302,1,5,1,202);
+insert into orders values(303,1,10,3,203);
+
+select * from orders;
+
+insert into payments values(401,'Not paid','30000',1,301);
+insert into payments values(402,'Not paid','15000',3,303);
+
+select * from payments;
+
+insert into order_status values(501,'Shipped',1,301,401);
+insert into order_status values(502,'Order Placed',3,303,402);
+
+select * from order_status;
