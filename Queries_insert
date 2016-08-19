@@ -1,0 +1,43 @@
+
+select * from users;
+insert into users(uname,email_id,password,contact) values('sonali','sonali.sulgadle@weboniselab.com','webonise123#',9175395590);
+insert into users(uname,email_id,password,contact) values('riya','riya.jain@gmail.com','priya123#',9970254896);
+insert into users(uname,email_id,password,contact) values('nikita','nikita.t25@gmail.com','admin123#',9874563210);
+insert into users(uname,email_id,password,contact) values('ashrita','ashrita.thakur@weboniselab.com','webonise@123',9630258741);
+insert into users(uname,email_id,password,contact) values('damon','damon.sal5@yahoo.com','damon@56',9822654854);
+
+select * from users;
+
+select * from products;
+insert into products(name,description) values('samsung','Galaxy Core');
+insert into products(name,description) values('samsung','Note 3');
+insert into products(name,description) values('Motorola','4G plus');
+insert into products(name,description) values('Motorola','4G plus');
+insert into products(name,description) values('LeEco','Le 2');
+
+select * from products;
+
+select * from product_color;
+insert into product_color(product_id,color,price) values(1,'white',13000);
+insert into product_color(product_id,color,price) values(2,'Black',17000);
+insert into product_color(product_id,color,price) values(3,'white',15000);
+insert into product_color(product_id,color,price) values(4,'black',15000);
+insert into product_color(product_id,color,price) values(5,'white',12000);
+
+select * from product_color;
+
+select * from product_cart;
+
+insert into product_cart(user_id,product_id,quantity) values(1,1,1);
+insert into product_cart(user_id,product_id,quantity) values(1,2,1);
+insert into product_cart(user_id,product_id,quantity) values(2,3,1);
+insert into product_cart(user_id,product_id,quantity) values(3,4,1);
+insert into product_cart(user_id,product_id,quantity) values(4,5,1);
+insert into product_cart(user_id,product_id,quantity) values(4,5,1);
+insert into product_cart(user_id,product_id,quantity) values(4,2,1);
+update orders set method='Credit card',purchase_date=current_date where user_id=4;
+
+select * from product_cart;
+
+
+

@@ -1,0 +1,43 @@
+select * from users;
+insert into users(uname,email_id,password,contact) values('sonali','sonali.sulgadle@weboniselab.com','webonise123#',9175395590);
+insert into users(uname,email_id,password,contact) values('riya','riya.jain@gmail.com','priya123#',9970254896);
+insert into users(uname,email_id,password,contact) values('nikita','nikita.t25@gmail.com','admin123#',9874563210);
+insert into users(uname,email_id,password,contact) values('ashrita','ashrita.thakur@weboniselab.com','webonise@123',9630258741);
+insert into users(uname,email_id,password,contact) values('damon','damon.sal5@yahoo.com','damon@56',9822654854);
+
+delete from users where id=7;
+select * from users;
+
+
+select * from products;
+insert into products(name,description,color,price) values('samsung','Galaxy Core','white',13000);
+insert into products(name,description,color,price) values('samsung','Note 3','Black',17000);
+insert into products(name,description,color,price) values('Motorola','4G plus','white',15000);
+insert into products(name,description,color,price) values('Motorola','4G plus','black',15000);
+insert into products(name,description,color,price) values('LeEco','Le 2','white',12000);
+
+select * from products;
+
+insert into product_cart(user_id,product_id) values(8,1);
+insert into product_cart(user_id,product_id) values(9,2);
+insert into product_cart(user_id,product_id) values(9,3);
+insert into product_cart(user_id,product_id) values(10,4);
+insert into product_cart(user_id,product_id) values(11,5);
+
+select * from product_cart;
+
+select * 
+from users,product_cart
+where users.id=product_cart.user_id;
+
+
+insert into orders(quantity,discount,user_id,cart_id) values(1,5,8,1);
+insert into orders(quantity,discount,user_id,cart_id) values(1,10,9,2);
+insert into orders(quantity,discount,user_id,cart_id) values(1,5,9,3);
+insert into orders(quantity,discount,user_id,cart_id) values(1,10,10,4);
+insert into orders(quantity,discount,user_id,cart_id) values(1,5,11,5);
+
+
+select * from orders;
+
+
