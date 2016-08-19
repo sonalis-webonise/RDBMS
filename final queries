@@ -8,10 +8,16 @@ CONSTRAINT email CHECK (email_id ~* '^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+[.][A-Za-z]
 CONSTRAINT password_len CHECK (length(password) >= 8)
 );
 
+<<<<<<< HEAD
+=======
+drop table products CASCADE;
+
+>>>>>>> 5262a5d0f0a1d74723975ea611fcb4bab3bd601d
 create table products(
 id SERIAL NOT NULL,
 name varchar(50),
 description varchar(300),
+<<<<<<< HEAD
 PRIMARY KEY(id)
 );
 
@@ -22,11 +28,21 @@ color varchar(50),
 price int
 );
 
+=======
+color varchar(50),
+price int,
+PRIMARY KEY(id)
+);
+
+
+drop table product_cart CASCADE;
+>>>>>>> 5262a5d0f0a1d74723975ea611fcb4bab3bd601d
 
 create table product_cart(
 id SERIAL NOT NULL,
 user_id integer references users(id),
 product_id int references products(id),
+<<<<<<< HEAD
 quantity int,
 PRIMARY KEY(id)
 );
@@ -41,10 +57,44 @@ payment boolean,
 PRIMARY KEY(id)
 );
 
+=======
+PRIMARY KEY(id)
+);
+
+drop table orders CASCADE;
+
+create table orders(
+id SERIAL,
+quantity int,
+discount int,
+user_id int references users(id),
+cart_id int references product_cart(id),
+PRIMARY KEY(id)
+);
+
+drop table payments CASCADE;
+
+create table payments(
+id SERIAL NOT NULL,
+method varchar(50),
+total_cost int,
+user_id int references users(id),
+order_id int references orders(id),
+PRIMARY KEY(id)
+);
+
+
+drop table order_status CASCADE;
+
+>>>>>>> 5262a5d0f0a1d74723975ea611fcb4bab3bd601d
 create table order_status(
 id SERIAL NOT NULL,
 status varchar(50),
 user_id int references users(id),
+<<<<<<< HEAD
 order_id int references orders(id),
+=======
+payment_id int references payments(id),
+>>>>>>> 5262a5d0f0a1d74723975ea611fcb4bab3bd601d
 PRIMARY KEY(id)
 );
